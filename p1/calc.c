@@ -1,0 +1,47 @@
+/* calc.c by Kenneth Toombs and Boris Sadykoff 1/23/14 */
+
+#include <stdio.h>
+int main()
+{
+  /* declare variables */
+  float x, y, result;
+  char op;
+  
+  /* ask user for input */
+  printf("enter expression:");
+
+  int check = scanf("%f %c %f", &x, &op, &y);
+
+  if (check < 3) 
+    { 
+    printf("bad expression \n");
+    return 1;
+    }
+  if (op == '+')
+       result = x + y;
+  else if (op == '-')
+       result = x - y;
+  else if (op == '*')
+       result = x * y;
+  else if (op == '/')
+     {
+     if (y == 0)
+       {
+       printf("divide by zero \n");
+       return 1;
+       }
+     else result = x / y;
+       }
+  else {
+    printf("bad operator \n");
+    return 1;
+  }
+    
+     
+    printf("result: %.3f \n", result);
+   
+
+  
+  return 0;
+
+ }

@@ -1,0 +1,10 @@
+/* swaps values of two ints -
+   but ineffective until fixed by
+   Kenneth Toombs and Yuval Halperin, 2/18/2014 */
+
+void intswap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+return;
+}

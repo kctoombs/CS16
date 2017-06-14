@@ -1,0 +1,9 @@
+/* swaps values of two ints -
+   but ineffective until fixed by
+   YOUR NAME(S), TODAY'S DATE */
+
+void intswap(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}

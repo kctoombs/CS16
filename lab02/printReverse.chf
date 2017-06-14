@@ -1,0 +1,4 @@
+void printReverse(int d[n]; int n);
+int d[5] = {1,2,3,4,5};
+for(i = n-1; i >= 0; i--)
+  printf("%lf \n", d[i]);

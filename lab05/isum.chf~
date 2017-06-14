@@ -1,0 +1,12 @@
+/* Yuval Halperin, Kenneth Toombs, Feburary 11th */
+
+/*returns sum of the first n values in x */
+int i;
+int sum=0;
+int isum(int x[], int n);
+
+
+for(i=0; i<n; i++)
+   sum+=x[i];
+   return sum;
+ 

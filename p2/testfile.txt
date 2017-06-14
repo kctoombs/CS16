@@ -1,0 +1,86 @@
+/*
+   counts.c - CS 16 Project 2
+   Kenneth Toombs, Boris Sadykoff, 2/14/2014
+*/
+
+#include <stdio.h>
+#include "common.h"
+
+
+int main(int argc, char *argv[]) 
+{
+  int i = 0, a = 0;
+  int total;
+  int ASCII;
+  int count[NUM] = {0};
+  FILE *in = stdin, *out = stdout;
+  char c;
+
+  /* if (argv[3][0]=='-' && argv[3][1]!='o')
+    BADOPTION(argv[3]);
+  if (argv[4]==NULL)
+    MISSING;
+  if(argv[0] != '-')
+    {
+      {
+        if (in == NULL)
+	  BADFILE(*in);
+	  }*/
+  if(argc > 1 )
+    {
+      for(a = 1; a <= argc - 1; a++)
+	{
+	  if(argv[a] != '-o')
+	    {
+	      if(argv[a][0] == '-' && argv[a][1] != 'o')
+		{
+		  BADOPTION(argv[a]);
+		}
+	      *in = fopen(argv[a], "r");
+	      if(in == NULL)
+		BADFILE(in);
+	    }
+	  else if(argv[a] == '-o')
+	    {
+	      if(argv[a+1] == NULL)
+		MISSING;
+	      *out = fopen(argv[a+1], "w");
+	    }
+	}
+
+  while(c != EOF)
+    {
+      c = getc(stdin);
+      ASCII = c;
+      count[ASCII]++;
+      total++;
+    }
+    
+  prHeader(out);
+  for(i = 0; i <= 32; i++)
+    {
+      if(count[i] != 0)
+	{
+	  prCountStr(out, i, symbols[i], count[i]);
+	}
+    }
+
+      for(i = 33; i <= 126; i++)
+	{
+	  if(count[i] != 0)
+	    {
+	      prCountChr(out, i, (char)i, count[i]);
+	    }
+ 	}
+	
+	  if( i == 127 && count[i] != 0)
+	    {
+	      prCountStr(out, i, symbolDel, count[i]);
+	    }
+	 
+       prTotal(out, total-1);
+    }
+  
+	     
+    return 0;
+}

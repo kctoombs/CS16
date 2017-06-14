@@ -1,0 +1,16 @@
+/* calc.c by Kenneth Toombs and Boris Sadykoff 1/23/2014*/
+
+#include <stdio.h>
+int main()
+{
+  /* declare variables */
+  float x, y;
+  char a;
+
+  /* ask user for input */
+  printf("enter expression:");
+  scanf("%f %c %f", &x, &a, &y);
+
+
+
+  

@@ -1,0 +1,84 @@
+/* cards.c - uses a structure that represents a playing card
+   Kenneth Toombs, Yuval Halperin 2/25/14 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* define the card structure and a nickname for it */
+struct card {
+    char suit;
+    int face;
+};
+typedef struct card Card;
+
+/* prototypes for functions that YOU WILL DEFINE BELOW main */
+void printCard(Card c);
+void printCards(Card cards[], int n);
+int cmpCard(Card *c1, Card *c2);
+
+/* define array and a utility function to simplify lookups */
+char *faces[] = {"", "", "deuce", "three", "four", "five", "six",
+    "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"};
+char *suit(char s) {
+    if (s == 'C') return "Clubs";
+    if (s == 'D') return "Diamonds";
+    if (s == 'H') return "Hearts";
+    return "Spades";
+}
+
+/* DO NOT CHANGE main */
+int main(void) {
+    /* declare proper function pointer to pass to qsort */
+    int (*cmpFunc)(const void *, const void *);
+
+    /* create and initialize an array of 5 cards */
+    Card cards[] = { {'S', 14}, {'H', 12}, {'C', 7},
+                     {'D', 7}, {'S', 11} };
+
+    /* test printCard by itself */
+    printf("printing third card: ");
+    printCard(cards[2]);
+
+    /* test printCards now for first two cards, then whole array */
+    printf("\nprinting first two cards:\n");
+    printCards(cards, 2);
+    printf("\nprinting all cards, unsorted:\n");
+    printCards(cards, 5);
+
+    /* depend on cmpCard to use qsort on array, then print again */
+    cmpFunc = (void *)cmpCard;
+    qsort(cards, 5, sizeof(Card), cmpFunc);
+    printf("\nprinting all cards, sorted:\n");
+    printCards(cards, 5);
+
+    return 0;
+}
+
+/* COMPLETE THE FUNCTIONS BELOW */
+
+/* prints c neatly, followed by a newline */
+void printCard(Card c) {
+  printf("%s of  %s \n",  faces[c.face], suit(c.suit));  
+    
+}
+
+/* neatly prints first n cards on separate lines */
+void printCards(Card cards[], int n) {
+  int index =0;
+  for(index = 0; index <n; index++)
+    printf("%s of %s \n", faces[cards[index].face], suit(cards[index].suit));
+    
+}
+
+/* returns value less than 0 if c1 face is less than c2 face,
+   0 if faces of c1 and c2 are equal, or
+   greater than 0 if c1 face is greater than c2 face.
+   CAREFUL: both c1 and c2 are pointers. */
+int cmpCard(Card *c1, Card *c2) {
+  if(c1->face<c2->face)
+      return -1;
+  if (c1->face==c2->face)
+    return 0;
+  if (c1->face>c2->face)
+      return 1;
+}

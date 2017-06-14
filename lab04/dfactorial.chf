@@ -1,0 +1,18 @@
+/* Kenneth Toombs and Yuval Halperin, Feb 4th,2014 */
+
+/* calculates factorial of n as double */
+
+double dfactorial(int n){
+    double result=1;
+   
+       if( n == 0 )
+         printf("1");
+ while(n > 0)
+   {
+     
+      	  result*=n;
+     	   n--;
+   }
+
+return result;
+}
